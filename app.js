@@ -1,4 +1,6 @@
 var tmi = require('tmi.js');
+//add channel name here
+var channel = "";
 
 var options = {
 	options: {
@@ -10,19 +12,26 @@ var options = {
 	},
 	identity:{
 		username: "twitchbot",
-		password: "oauth:cfxbf5xyumejnzszg33mpcui46a3fd"
+		password: "oauth:'' "
 
 	},
-	channels: ["shotochampion"]
+	channels: [channel]
 };
 
 var client = new tmi.client(options);
 client.connect();
+//template for bot replies 
+// client.on("chat", function (channel, userstate, message, self) {
+//     // Don't listen to my own messages..
+//     if(message === "   "){
+//     	client.action(channel, "emote");
+//     }
 
+// });
 client.on("chat", function (channel, userstate, message, self) {
-    // Don't listen to my own messages..
-    if(message === "TriHard"){
-    	client.action("shotochampion", "TriHard");
+    
+    if(message === "wow"){
+    	client.action(channel, "PogChamp");
     }
 
 });
@@ -30,11 +39,11 @@ client.on("chat", function (channel, userstate, message, self) {
 client.on("cheer", function (channel, userstate, message) {
     // Do your stuff.
   
-    	client.action("shotochampion", "hihihi");
+    	client.action(channel, "hi chat");
     
 });
 
 client.on("connected", function(address, port){
-	client.action("shotochampion", "Hello I am a bot");
+	client.action(channel, "Hello I am a bot");
 
 });
